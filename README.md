@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ## Install within existing project
 The following commands test the installation from Git to the local machine
 ```
-pip install "git+https://git@github.com/katherinearvanitaki-data-engineer/codc-interview.git github.com/elsevier-bts/cep-analytics-shared-libraries.git"
+pip install "git+https://git@github.com/katherinearvanitaki-data-engineer/codc-interview.git"
 ```
 
 ## Install with new project
