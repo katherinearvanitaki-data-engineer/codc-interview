@@ -44,4 +44,9 @@ pip install "git+https://git@github.com/katherinearvanitaki-data-engineer/codc-i
 ```
 
 ## execute main script
-python main.py --countries_list "United Kingdom,Netherlands"
+input parameters: 
+--dataset_one, default value = "dataset_one.csv", 
+--dataset_two, default value = "dataset_one.csv", 
+--countries_list, default value = ""
+
+example: python main.py --countries_list "United Kingdom,Netherlands"
