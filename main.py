@@ -1,8 +1,17 @@
-#imports
+'''Imports.'''
 import pandas as pd
 import argparse
 
 def read_input():
+    """
+    This method processes the imput parameters and reads the 2 input files as dataframes
+
+    Returns:
+    dataset_one_pd: dataset_one input file as a Pandas dataframe
+    dataset_two_pd: dataset_two input file as a Pandas dataframe
+    countries_list_split: The list of countries from the input
+
+    """
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_one', '-dataset_one',  help="Pass the dataset_one csv file name ", type=str, default="dataset_one.csv")
@@ -23,6 +32,17 @@ def read_input():
     return dataset_one_pd, dataset_two_pd, countries_list_split
 
 def remove_columns(dataset_pd, list_columns_to_remove):
+    """
+    Input:
+    dataset_pd: input dataframe from which we want to exclude columns,
+    list_columns_to_remove: columns to in a list []
+
+    This method excludes the columns in list_columns_to_remove from the dataframe dataset_pd.
+
+    Returns:
+    df: The input dataframe excluding the columns in list_columns_to_remove parameter.
+
+    """
     try:
         print("")
 
@@ -35,6 +55,18 @@ def remove_columns(dataset_pd, list_columns_to_remove):
     return df
 
 def filtering_data(dataset_pd, column_tofilter, values_tofilter):
+    """
+    Input:
+    dataset_pd: input dataframe from which we want to exclude columns,
+    column_tofilter: column to filter on,
+    values_tofilter: value to filter on the column column_tofilter
+
+    This method excludes the values in the parameter values_tofilter for the column in column_tofilter.
+
+    Returns:
+    dataset_pd_filtered: The input dataframe excluding the values in the values_tofilter parameter.
+
+    """
 
     try:
         if values_tofilter  == '':
@@ -49,6 +81,19 @@ def filtering_data(dataset_pd, column_tofilter, values_tofilter):
     return dataset_pd_filtered
 
 def renaming_columns(dataset_pd, old_column_names, new_column_names):
+    """
+    Input:
+    dataset_pd: input dataframe from which we want to exclude columns,
+    old_column_names: list of old column names,
+    new_column_names: list of new column names,
+
+    This method takes as input the dataframe dataset_pd and renames the columns from the list old_column_names,
+    to the column names in new_column_names.
+
+    Returns:
+    dataset_pd: The input dataframe with the renamed columns.
+
+    """
 
     try:
         print("")
@@ -61,6 +106,18 @@ def renaming_columns(dataset_pd, old_column_names, new_column_names):
     return dataset_pd
 
 def join_datasets(dataset_one_pd, dataset_two_pd, value_to_join):
+    """
+    Input:
+    dataset_one_pd: input left dataframe to join,
+    dataset_two_pd: input right dataframe to join,
+    value_to_join: value to join on the 2 input dataframes,
+
+    This method joins the datasets dataset_one_pd and dataset_two_pd on value_to_join.
+
+    Returns:
+    joined_pd: The joined datafrane
+
+    """
 
     try:
         joined_pd = pd.merge(dataset_one_pd, dataset_two_pd, on=value_to_join)
@@ -71,8 +128,8 @@ def join_datasets(dataset_one_pd, dataset_two_pd, value_to_join):
     return joined_pd
 
 if __name__ == '__main__':
-    dataset_one_pd, dataset_two_pd, countries_list_split = read_input()
 
+    dataset_one_pd, dataset_two_pd, countries_list_split = read_input()
     dataset_one_pd_rmcl = remove_columns(dataset_one_pd, ['first_name','last_name'])
     dataset_two_pd_rmcl = remove_columns(dataset_two_pd, ['cc_n'])
 
@@ -103,5 +160,9 @@ if __name__ == '__main__':
     print('renaming_columns_pd')
     print('')
     print(renaming_columns_pd.head(2))
+
+    """
+    Output the final dataframe in the file results.csv in the folder client_data.
+    """
 
     renaming_columns_pd.to_csv('./client_data/results.csv')
