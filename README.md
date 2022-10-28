@@ -49,4 +49,5 @@ input parameters:
 --dataset_two, default value = "dataset_one.csv", 
 --countries_list, default value = ""
 
-example: python main.py --countries_list "United Kingdom,Netherlands"
+example command: 
+python main.py --dataset_one "dataset_one.csv" --dataset_two "dataset_two.csv" --countries_list "United Kingdom,Netherlands"
