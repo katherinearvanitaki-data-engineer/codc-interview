@@ -126,8 +126,6 @@ def join_datasets(dataset_one_pd, dataset_two_pd, value_to_join):
 
 if __name__ == '__main__':
 
-    #logging.basicConfig(filename='logs.log', level=logging.INFO)
-
     logging.basicConfig(filename='logs.log', format='%(asctime)s %(levelname)-8s %(message)s',
                         level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
