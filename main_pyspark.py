@@ -45,12 +45,8 @@ def remove_columns(dataset_pd, list_columns_to_remove):
     df: The input dataframe excluding the columns in list_columns_to_remove parameter.
 
     """
-    try:
-        for i in list_columns_to_remove:
-            dataset_pd = dataset_pd.drop(i)
-
-    except Exception as e:
-        raise Exception( "Error when removing columns: " + str(e))
+    for i in list_columns_to_remove:
+        dataset_pd = dataset_pd.drop(i)
 
     return dataset_pd
 
@@ -68,15 +64,10 @@ def filtering_data(dataset_pd, column_tofilter, values_tofilter):
 
     """
 
-    try:
-        if values_tofilter  == '':
-            dataset_pd_filtered = dataset_pd.copy()
-        else:
-            dataset_pd_filtered = dataset_pd[dataset_pd[column_tofilter].isin(values_tofilter)]
-
-    except Exception as e:
-        dataset_pd_filtered = []
-        raise Exception( "Error when filtering data: " + str(e))
+    if values_tofilter  == '':
+        dataset_pd_filtered = dataset_pd.copy()
+    else:
+        dataset_pd_filtered = dataset_pd[dataset_pd[column_tofilter].isin(values_tofilter)]
 
     return dataset_pd_filtered
 
@@ -94,12 +85,8 @@ def renaming_columns(dataset_pd, old_column_names, new_column_names):
     dataset_pd: The input dataframe with the renamed columns.
     """
 
-    try:
-        for i,j in zip(old_column_names, new_column_names):
-            dataset_pd = dataset_pd.withColumnRenamed(i, j)
-
-    except Exception as e:
-        raise Exception( "Error when renaming columns: " + str(e))
+    for i,j in zip(old_column_names, new_column_names):
+        dataset_pd = dataset_pd.withColumnRenamed(i, j)
 
     return dataset_pd
 
@@ -116,15 +103,13 @@ def join_datasets(dataset_one_pd, dataset_two_pd, value_to_join):
     joined_pd: The joined dataframe
     """
 
-    try:
-        joined_pd = dataset_one_pd.join(dataset_two_pd, [value_to_join])
-
-    except Exception as e:
-        raise Exception( "Error when joining dataframes: " + str(e))
+    joined_pd = dataset_one_pd.join(dataset_two_pd, [value_to_join])
 
     return joined_pd
 
 if __name__ == '__main__':
+
+    #logging.basicConfig(filename='logs.log', level=logging.INFO)
 
     logging.basicConfig(filename='logs.log', format='%(asctime)s %(levelname)-8s %(message)s',
                         level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
